@@ -47,3 +47,56 @@ console.log(compareWord('sword', 'axe'));
 console.log(compareWord('axe', 'sword'));
 
 
+function getCharPerLine(str, indent){
+    let output = '';
+    for (let i = 0; i < str.length; i++) {
+        let char = str[i];
+        if (char === ' ') {
+            continue
+        }
+        if (indent) {
+            output += ' '.repeat(i) + char + '\n';
+        } 
+        else {
+            output += char + '\n';
+        }
+    }
+    return output.trim();
+}
+
+console.log(getCharPerLine("Hello World!", false))
+console.log(getCharPerLine("Hello World!", true))
+
+
+function arrow(size){
+    let output = '';
+    let i = 1;
+
+    while (i <= size) {
+        for (let j = 0; j < i; j++) {
+            output += '*';
+        }
+        output += '\n';
+        i++;
+    }
+
+    i = size - 1;
+    while (i > 0) {
+        for (let j = 0; j < i; j++) {
+            output += '*';
+        }
+        output += '\n';
+        i--;
+    }
+
+    return output;
+}
+
+console.log(arrow(3))
+console.log(arrow(7))
+
+
+
+function rightArrow(size){
+    
+}
