@@ -6,7 +6,7 @@ import "bootstrap"
 function getMax(x, y, z){
     return Math.max(x, y, z)
 }
-    let largest = getMax(13, 45, 234)
+    let largest = getMax(1, 2, 3, 4 ,5)
 
 console.log(largest)
 
@@ -14,7 +14,7 @@ console.log(largest)
 function getMin(x, y, z){
     return Math.min(x, y, z)
 }
-    let smallest = getMin(12, 56, 3)
+    let smallest = getMin(1, 2, 3, 4, 5)
 
 console.log(smallest)
 
@@ -25,7 +25,7 @@ function getMean(x, y, z){
     return mean
 }
 
-console.log(getMean(18, 4, 5))
+console.log(getMean(18, 4, 8))
 
 
 function compareWord(word1, word2){
@@ -95,8 +95,3 @@ function arrow(size){
 console.log(arrow(3))
 console.log(arrow(7))
 
-
-
-function rightArrow(size){
-    
-}

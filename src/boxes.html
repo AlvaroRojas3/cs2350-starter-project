@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./stylesheets/main.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="mb-3">
+              <label for="n" class="form-label">Size of Table</label>
+              <input type="number" class="form-control" id="n" aria-describedby="emailHelp" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+        <div id="boxes"></div>
+    </div>
+
+
+
+
+    
+    <script type="module">
+        document.querySelector('form').onsubmit = function (e) {
+            e.preventDefault()
+
+            let n = parseInt(document.getElementById("n").value)
+
+
+        let rows = []
+        for(let r = 0; r < n;  r++){
+            let row = []
+            for(let c = 0; c < n; c++){
+                row.push(Math.random() < .5 ? 0 : 1)
+            }
+            rows.push(row)
+        }
+
+        console.log(rows)
+
+    // Technique 1: Usign piecing html together 
+        let html = `
+            <h1>A table of Boxes</h1>
+            <table><tbody>
+        `
+        for(let r = 0; r < n;  r++){
+            html += "<tr>"
+            for(let c = 0; c < n; c++){
+                //html += "<td style=>" + rows[r][c] + "</td>"
+                html += `<td style="width: 50px; background: ${rows[r][c] === 0 ? "red" : "green"}">${rows[r][c]}</td>`
+            }
+
+            html += "</tr>"
+        }
+
+        html += "</tbody></table>"
+
+        document.getElementById("boxes").innerHTML = html
+
+
+    // Not usign html directly
+
+    function createElement(tag, text, styles){
+        let el = document.createElement(tag)
+        el.textContent = text
+        for(let s in styles){
+            el.style[s] = styles[s]
+        }
+        return el
+    }
+    let boxes = document.getElementById("boxes")
+    let h1 = document.createElement('h1')
+    h1.innerHTML= "A table of BOXES Again"
+    boxes.appendChild(h1)
+
+    let t = document.createElement('table')
+    let tb = document.createElement('tbody')
+    t.appendChild(tb)
+    
+    boxes.appendChild(t)
+
+    for(let r = 0; r < n;  r++){
+        let row = document.createElement('tr')
+        for(let c = 0; c < n; c++){
+            //let col = document.createElement('td')
+            //col.textContent = rows[r][c]
+            //col.style.width = '50px'
+            //col.style.backgroundColor = rows[r][c] < .5 ? 'gold' : 'blue'
+
+            row.appendChild(createElement('td', rows[r][c], {width: "50px", 
+                backgroundColor: rows[c][r] < .5 ? "gold" : "blue"}))
+            
+            //row.appendChild(col)
+        }
+        tb.appendChild(row)
+    }
+
+    // Adding events 
+
+    //document.querySelectorAll('td').forEach(function(td) {
+        //td.addEventListener("click", function(e) {
+            //alert(`I'm ${e.target.textContent}, and my color is ${e.target.style.backgroundColor}.`)
+       //})
+   //})
+
+        //.addEventListener("click", function(e){
+            //alert(`I'm ${e.target.textContent}, and my color is ${e.target.style.backgroundColor}`)
+
+    for(let td of document.querySelectorAll('td')){
+        td.style.cursor - "pointer"
+       // td.addEventListener("click", function(e) {
+           // alert(`I'm ${e.target.textContent}, and my color is ${e.target.style.backgroundColor}.`)
+        //})
+
+        td.onclick - function(e) {
+            alert(`I'm ${e.target.textContent}, and my color is ${e.target.style.backgroundColor}.`)
+        }
+    }
+        }
+    </script>
+</body>
+</html>
